@@ -1,0 +1,231 @@
+
+.pio/build/swervolf_nexys/firmware.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text.init:
+
+00000000 <_start>:
+   0:	b0201073          	csrw	minstret,zero
+   4:	b8201073          	csrw	minstreth,zero
+   8:	4081                	li	ra,0
+   a:	4101                	li	sp,0
+   c:	4181                	li	gp,0
+   e:	4201                	li	tp,0
+  10:	4281                	li	t0,0
+  12:	4301                	li	t1,0
+  14:	4381                	li	t2,0
+  16:	4401                	li	s0,0
+  18:	4481                	li	s1,0
+  1a:	4501                	li	a0,0
+  1c:	4581                	li	a1,0
+  1e:	4601                	li	a2,0
+  20:	4681                	li	a3,0
+  22:	4701                	li	a4,0
+  24:	4781                	li	a5,0
+  26:	4801                	li	a6,0
+  28:	4881                	li	a7,0
+  2a:	4901                	li	s2,0
+  2c:	4981                	li	s3,0
+  2e:	4a01                	li	s4,0
+  30:	4a81                	li	s5,0
+  32:	4b01                	li	s6,0
+  34:	4b81                	li	s7,0
+  36:	4c01                	li	s8,0
+  38:	4c81                	li	s9,0
+  3a:	4d01                	li	s10,0
+  3c:	4d81                	li	s11,0
+  3e:	4e01                	li	t3,0
+  40:	4e81                	li	t4,0
+  42:	4f01                	li	t5,0
+  44:	4f81                	li	t6,0
+  46:	55555337          	lui	t1,0x55555
+  4a:	55530313          	addi	t1,t1,1365 # 55555555 <_sw_int_mem_ctrl+0x51555555>
+  4e:	7c031073          	csrw	0x7c0,t1
+  52:	00003197          	auipc	gp,0x3
+  56:	9f618193          	addi	gp,gp,-1546 # 2a48 <__global_pointer$>
+  5a:	00003117          	auipc	sp,0x3
+  5e:	1ee10113          	addi	sp,sp,494 # 3248 <_sp>
+  62:	00002517          	auipc	a0,0x2
+  66:	1e650513          	addi	a0,a0,486 # 2248 <__bss_start>
+  6a:	00002597          	auipc	a1,0x2
+  6e:	1de58593          	addi	a1,a1,478 # 2248 <__bss_start>
+  72:	00b57763          	bgeu	a0,a1,80 <_start+0x80>
+  76:	00052023          	sw	zero,0(a0)
+  7a:	0511                	addi	a0,a0,4
+  7c:	feb56de3          	bltu	a0,a1,76 <_start+0x76>
+  80:	2a89                	jal	1d2 <__libc_init_array>
+  82:	4501                	li	a0,0
+  84:	4581                	li	a1,0
+  86:	2029                	jal	90 <main>
+  88:	a001                	j	88 <_start+0x88>
+  8a:	0000                	unimp
+  8c:	0000                	unimp
+	...
+
+Disassembly of section .text:
+
+00000090 <main>:
+  90:	1141                	addi	sp,sp,-16
+  92:	c026                	sw	s1,0(sp)
+  94:	c206                	sw	ra,4(sp)
+  96:	80001337          	lui	t1,0x80001
+  9a:	03830313          	addi	t1,t1,56 # 80001038 <OVERLAY_END_OF_OVERLAYS+0xa0001038>
+  9e:	02400393          	li	t2,36
+  a2:	00730023          	sb	t2,0(t1)
+  a6:	207d                	jal	154 <spiInit>
+  a8:	28f9                	jal	186 <spiCSDown>
+  aa:	4529                	li	a0,10
+  ac:	20c5                	jal	18c <internalSpiClearIF>
+  ae:	02d00513          	li	a0,45
+  b2:	28e9                	jal	18c <internalSpiClearIF>
+  b4:	4509                	li	a0,2
+  b6:	28d9                	jal	18c <internalSpiClearIF>
+  b8:	20e9                	jal	182 <spiCSUp>
+  ba:	01000337          	lui	t1,0x1000
+  be:	fff30313          	addi	t1,t1,-1 # ffffff <_sp+0xffcdb7>
+  c2:	800013b7          	lui	t2,0x80001
+  c6:	20838393          	addi	t2,t2,520 # 80001208 <OVERLAY_END_OF_OVERLAYS+0xa0001208>
+  ca:	0063a023          	sw	t1,0(t2)
+
+000000ce <NewMeasurement>:
+  ce:	2865                	jal	186 <spiCSDown>
+  d0:	452d                	li	a0,11
+  d2:	286d                	jal	18c <internalSpiClearIF>
+  d4:	4521                	li	a0,8
+  d6:	285d                	jal	18c <internalSpiClearIF>
+  d8:	0ff00513          	li	a0,255
+  dc:	2845                	jal	18c <internalSpiClearIF>
+  de:	2055                	jal	182 <spiCSUp>
+  e0:	00b00533          	add	a0,zero,a1
+  e4:	44cd                	li	s1,19
+  e6:	2045                	jal	186 <spiCSDown>
+  e8:	452d                	li	a0,11
+  ea:	204d                	jal	18c <internalSpiClearIF>
+  ec:	4525                	li	a0,9
+  ee:	2879                	jal	18c <internalSpiClearIF>
+  f0:	0ff00513          	li	a0,255
+  f4:	2861                	jal	18c <internalSpiClearIF>
+  f6:	2071                	jal	182 <spiCSUp>
+  f8:	00b00533          	add	a0,zero,a1
+  fc:	04b2                	slli	s1,s1,0xc
+  fe:	44c9                	li	s1,18
+ 100:	2059                	jal	186 <spiCSDown>
+ 102:	452d                	li	a0,11
+ 104:	2061                	jal	18c <internalSpiClearIF>
+ 106:	4529                	li	a0,10
+ 108:	2051                	jal	18c <internalSpiClearIF>
+ 10a:	0ff00513          	li	a0,255
+ 10e:	28bd                	jal	18c <internalSpiClearIF>
+ 110:	288d                	jal	182 <spiCSUp>
+ 112:	00b00533          	add	a0,zero,a1
+ 116:	04b2                	slli	s1,s1,0xc
+ 118:	94aa                	add	s1,s1,a0
+ 11a:	80001337          	lui	t1,0x80001
+ 11e:	03c30313          	addi	t1,t1,60 # 8000103c <OVERLAY_END_OF_OVERLAYS+0xa000103c>
+ 122:	00932023          	sw	s1,0(t1)
+ 126:	04000393          	li	t2,64
+ 12a:	80001337          	lui	t1,0x80001
+ 12e:	20c30313          	addi	t1,t1,524 # 8000120c <OVERLAY_END_OF_OVERLAYS+0xa000120c>
+ 132:	00732023          	sw	t2,0(t1)
+ 136:	02100393          	li	t2,33
+ 13a:	00732023          	sw	t2,0(t1)
+
+0000013e <counting>:
+ 13e:	00032383          	lw	t2,0(t1)
+ 142:	0403f393          	andi	t2,t2,64
+ 146:	fe038ce3          	beqz	t2,13e <counting>
+ 14a:	b751                	j	ce <NewMeasurement>
+ 14c:	c026                	sw	s1,0(sp)
+ 14e:	c206                	sw	ra,4(sp)
+ 150:	0141                	addi	sp,sp,16
+ 152:	8082                	ret
+
+00000154 <spiInit>:
+ 154:	80001337          	lui	t1,0x80001
+ 158:	10030313          	addi	t1,t1,256 # 80001100 <OVERLAY_END_OF_OVERLAYS+0xa0001100>
+ 15c:	05300293          	li	t0,83
+ 160:	00530023          	sb	t0,0(t1)
+ 164:	80001337          	lui	t1,0x80001
+ 168:	11830313          	addi	t1,t1,280 # 80001118 <OVERLAY_END_OF_OVERLAYS+0xa0001118>
+ 16c:	4289                	li	t0,2
+ 16e:	00530023          	sb	t0,0(t1)
+ 172:	8082                	ret
+
+00000174 <spiCS>:
+ 174:	800012b7          	lui	t0,0x80001
+ 178:	12028293          	addi	t0,t0,288 # 80001120 <OVERLAY_END_OF_OVERLAYS+0xa0001120>
+ 17c:	00a28023          	sb	a0,0(t0)
+ 180:	8082                	ret
+
+00000182 <spiCSUp>:
+ 182:	4501                	li	a0,0
+ 184:	bfc5                	j	174 <spiCS>
+
+00000186 <spiCSDown>:
+ 186:	0ff00513          	li	a0,255
+ 18a:	b7ed                	j	174 <spiCS>
+
+0000018c <internalSpiClearIF>:
+ 18c:	80001337          	lui	t1,0x80001
+ 190:	10830313          	addi	t1,t1,264 # 80001108 <OVERLAY_END_OF_OVERLAYS+0xa0001108>
+ 194:	00030283          	lb	t0,0(t1)
+ 198:	0802e293          	ori	t0,t0,128
+ 19c:	00530023          	sb	t0,0(t1)
+
+000001a0 <internalSpiActualSend>:
+ 1a0:	800012b7          	lui	t0,0x80001
+ 1a4:	11028293          	addi	t0,t0,272 # 80001110 <OVERLAY_END_OF_OVERLAYS+0xa0001110>
+ 1a8:	00a28023          	sb	a0,0(t0)
+
+000001ac <internalSpiTestIF>:
+ 1ac:	80001337          	lui	t1,0x80001
+ 1b0:	10830313          	addi	t1,t1,264 # 80001108 <OVERLAY_END_OF_OVERLAYS+0xa0001108>
+ 1b4:	00030283          	lb	t0,0(t1)
+ 1b8:	0802f293          	andi	t0,t0,128
+ 1bc:	08000313          	li	t1,128
+ 1c0:	fe6296e3          	bne	t0,t1,1ac <internalSpiTestIF>
+
+000001c4 <internalSpiReadData>:
+ 1c4:	800012b7          	lui	t0,0x80001
+ 1c8:	11028293          	addi	t0,t0,272 # 80001110 <OVERLAY_END_OF_OVERLAYS+0xa0001110>
+ 1cc:	00028583          	lb	a1,0(t0)
+ 1d0:	8082                	ret
+
+000001d2 <__libc_init_array>:
+ 1d2:	1141                	addi	sp,sp,-16
+ 1d4:	c422                	sw	s0,8(sp)
+ 1d6:	c04a                	sw	s2,0(sp)
+ 1d8:	00000417          	auipc	s0,0x0
+ 1dc:	e2840413          	addi	s0,s0,-472 # 0 <__comrv_align_size>
+ 1e0:	00000917          	auipc	s2,0x0
+ 1e4:	e2090913          	addi	s2,s2,-480 # 0 <__comrv_align_size>
+ 1e8:	40890933          	sub	s2,s2,s0
+ 1ec:	c606                	sw	ra,12(sp)
+ 1ee:	c226                	sw	s1,4(sp)
+ 1f0:	40295913          	srai	s2,s2,0x2
+ 1f4:	00090963          	beqz	s2,206 <__libc_init_array+0x34>
+ 1f8:	4481                	li	s1,0
+ 1fa:	401c                	lw	a5,0(s0)
+ 1fc:	0485                	addi	s1,s1,1
+ 1fe:	0411                	addi	s0,s0,4
+ 200:	9782                	jalr	a5
+ 202:	fe991ce3          	bne	s2,s1,1fa <__libc_init_array+0x28>
+ 206:	00000417          	auipc	s0,0x0
+ 20a:	dfa40413          	addi	s0,s0,-518 # 0 <__comrv_align_size>
+ 20e:	00000917          	auipc	s2,0x0
+ 212:	df290913          	addi	s2,s2,-526 # 0 <__comrv_align_size>
+ 216:	40890933          	sub	s2,s2,s0
+ 21a:	40295913          	srai	s2,s2,0x2
+ 21e:	00090963          	beqz	s2,230 <__libc_init_array+0x5e>
+ 222:	4481                	li	s1,0
+ 224:	401c                	lw	a5,0(s0)
+ 226:	0485                	addi	s1,s1,1
+ 228:	0411                	addi	s0,s0,4
+ 22a:	9782                	jalr	a5
+ 22c:	fe991ce3          	bne	s2,s1,224 <__libc_init_array+0x52>
+ 230:	40b2                	lw	ra,12(sp)
+ 232:	4422                	lw	s0,8(sp)
+ 234:	4492                	lw	s1,4(sp)
+ 236:	4902                	lw	s2,0(sp)
+ 238:	0141                	addi	sp,sp,16
+ 23a:	8082                	ret
